@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Kubernetes: Run/Debug",
+            "type": "cloudcode.kubernetes",
+            "request": "launch",
+            "skaffoldConfig": "${workspaceFolder}/skaffold.yaml",
+            "imageRegistry": "asia-southeast2-docker.pkg.dev/alevz-demo-1/containers/fe-temp",
+            "watch": true,
+            "cleanUp": true,
+            "portForward": true
+        }
+    ]
+}
