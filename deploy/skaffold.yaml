@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta16
+kind: Config
+profiles:
+  - name: dev
+    deploy:
+      kustomize:
+        paths:
+          - env/dev
+  - name: prod
+    deploy:
+      kustomize:
+        paths:
+          - env/prod

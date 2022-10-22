@@ -1,0 +1,5 @@
+resources:
+  - depl-1.yaml
+
+commonLabels:
+  demo: cloud-deploy
