@@ -1,6 +1,5 @@
 resources:
-  - depl-1.yaml
+  - frontend.yaml
 
 commonLabels:
   demo: cloud-deploy
-namespace: hipster
