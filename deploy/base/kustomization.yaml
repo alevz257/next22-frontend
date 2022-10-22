@@ -1,5 +1,2 @@
 resources:
   - frontend.yaml
-
-commonLabels:
-  demo: cloud-deploy
