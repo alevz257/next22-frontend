@@ -3,3 +3,4 @@ resources:
 
 commonLabels:
   demo: cloud-deploy
+namespace: hipster
