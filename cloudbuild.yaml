@@ -8,3 +8,4 @@ steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: ['deploy', 'releases', 'create', 'test-release-${SHORT_SHA}', '--skaffold-file', './deploy/skaffold.yaml','--project', 'next22-demo-1', '--region', 'asia-southeast2', '--delivery-pipeline', 'demo-clouddeploy', '--images=my-app-image=asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
+images: ['asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
