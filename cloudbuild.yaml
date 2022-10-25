@@ -8,7 +8,7 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
 - id: 'create-attestation'
-# Create attestation
+# Create attestation test
   name: 'gcr.io/$PROJECT_ID/binauthz-attestation:latest'
   args: 
     - '--artifact-url'
