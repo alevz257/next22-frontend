@@ -2,7 +2,7 @@ steps:
 # Build the container image
 - id: 'build-image'
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}', '-f', 'Dockerfile']
+  args: ['build', '.', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}', '-f', 'Dockerfile']
 - id: 'cloud-deploy'
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
