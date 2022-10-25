@@ -33,4 +33,4 @@ images: ['asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${C
 options:
   requestedVerifyOption: VERIFIED
   pool:
-    name: 'projects/next22-demo-1/locations/asia-southeast2/workerPools/privatepool-demo'
+    name: 'projects/next22-demo-1/locations/asia-southeast2/workerPools/privatepool-demo-id'
