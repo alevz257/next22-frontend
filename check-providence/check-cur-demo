@@ -1,0 +1,120 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "subject": [
+    {
+      "name": "https://asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+      "digest": {
+        "sha256": "dad2ae015ec58a6ef0ffbb9c202e1a8544adf2980d9f17d0e39d2f15b84d18a4"
+      }
+    }
+  ],
+  "predicateType": "https://slsa.dev/provenance/v0.1",
+  "slsaProvenance": {
+    "builder": {
+      "id": "https://cloudbuild.googleapis.com/GoogleHostedWorker@v0.3"
+    },
+    "recipe": {
+      "type": "https://cloudbuild.googleapis.com/CloudBuildYaml@v0.1",
+      "entryPoint": "cloudbuild.yaml",
+      "arguments": {
+        "@type": "type.googleapis.com/google.devtools.cloudbuild.v1.Build",
+        "id": "fb56e922-5a2d-43cb-826d-fb66e0844ebd",
+        "steps": [
+          {
+            "name": "gcr.io/cloud-builders/docker",
+            "args": [
+              "build",
+              "-t",
+              "asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+              "."
+            ],
+            "id": "build-image",
+            "timing": {
+              "startTime": "2022-10-25T14:31:17.081755474Z",
+              "endTime": "2022-10-25T14:32:58.518900277Z"
+            },
+            "status": "SUCCESS",
+            "pullTiming": {
+              "startTime": "2022-10-25T14:31:17.081755474Z",
+              "endTime": "2022-10-25T14:31:17.084539393Z"
+            }
+          },
+          {
+            "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+            "args": [
+              "deploy",
+              "releases",
+              "create",
+              "test-release-5a909b1",
+              "--skaffold-file",
+              "./deploy/skaffold.yaml",
+              "--project",
+              "next22-demo-1",
+              "--region",
+              "asia-southeast2",
+              "--delivery-pipeline",
+              "demo-clouddeploy",
+              "--images=my-app-image=asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+            ],
+            "id": "cloud-deploy",
+            "entrypoint": "gcloud",
+            "timing": {
+              "startTime": "2022-10-25T14:32:58.519010939Z",
+              "endTime": "2022-10-25T14:34:20.947512839Z"
+            },
+            "status": "SUCCESS",
+            "pullTiming": {
+              "startTime": "2022-10-25T14:32:58.519010939Z",
+              "endTime": "2022-10-25T14:34:05.288294460Z"
+            }
+          }
+        ],
+        "sourceProvenance": {
+          "resolvedRepoSource": {
+            "projectId": "next22-demo-1",
+            "repoName": "alevz-next22-frontend-demo",
+            "commitSha": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+          }
+        },
+        "options": {
+          "requestedVerifyOption": "VERIFIED",
+          "substitutionOption": "ALLOW_LOOSE",
+          "logging": "LEGACY",
+          "dynamicSubstitutions": true,
+          "pool": {
+            "name": "projects/next22-demo-1/locations/asia-southeast2/workerPools/privatepool-demo-id"
+          }
+        },
+        "substitutions": {
+          "_KMS_KEYRING_NAME": "key-attestor-ring",
+          "_IMAGE": "frontend-demo",
+          "_ATTESTOR_NAME": "attestor-next-demo",
+          "_KMS_KEY_NAME": "key-attestor-key",
+          "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
+          "REVISION_ID": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+          "_PROJECT_ID": "next22-demo-1",
+          "BRANCH_NAME": "main",
+          "TRIGGER_NAME": "trigger-frontend",
+          "COMMIT_SHA": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+          "REF_NAME": "main",
+          "SHORT_SHA": "5a909b1",
+          "REPO_NAME": "alevz-next22-frontend-demo"
+        },
+        "name": "projects/320741459061/locations/asia-southeast2/builds/fb56e922-5a2d-43cb-826d-fb66e0844ebd"
+      }
+    },
+    "metadata": {
+      "buildInvocationId": "fb56e922-5a2d-43cb-826d-fb66e0844ebd",
+      "buildStartedOn": "2022-10-25T14:31:09.286440161Z",
+      "buildFinishedOn": "2022-10-25T14:34:25.750426Z"
+    },
+    "materials": [
+      {
+        "uri": "https://source.cloud.google.com/next22-demo-1/alevz-next22-frontend-demo",
+        "digest": {
+          "sha1": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+        }
+      }
+    ]
+  }
+}
