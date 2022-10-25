@@ -3,29 +3,6 @@ steps:
 - id: 'build-image'
   name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}', '.']
-# Push the container image to Container Registry
-- id: 'push image'
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
-- id: 'create-attestation'
-# Create attestation test
-  name: 'gcr.io/$PROJECT_ID/binauthz-attestation:latest'
-  args: 
-    - '--artifact-url'
-    - 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}'
-    - '--attestor'
-    - 'projects/${_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
-    - '--keyversion'
-    - 'projects/${_PROJECT_ID}/locations/global/keyRings/${_KMS_KEYRING_NAME}/cryptoKeys/${_KMS_KEY_NAME}/cryptoKeyVersions/1'
-  env:
-  - 'PORT=8080'
-  - 'PRODUCT_CATALOG_SERVICE_ADDR=10.0.0.26:3550'
-  - 'CURRENCY_SERVICE_ADDR=10.0.0.20:7000'
-  - 'CART_SERVICE_ADDR=10.0.0.24:7070'
-  - 'RECOMMENDATION_SERVICE_ADDR=10.0.0.27:8080'
-  - 'SHIPPING_SERVICE_ADDR=10.0.0.28:50051'
-  - 'CHECKOUT_SERVICE_ADDR=10.0.0.21:5050'
-  - 'AD_SERVICE_ADDR=10.0.0.25:9555'    
 - id: 'cloud-deploy'
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
