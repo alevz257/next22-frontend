@@ -6,10 +6,10 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
 - id: 'create-attestation'
-  name: 'gcr.io/${_PROJECT_ID}/binauthz-attestation:latest'
+  name: 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}'
   args: 
     - '--artifact-url'
-    - 'gcr.io/${_PROJECT_ID}/helloworld:latest'
+    - 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}'
     - '--attestor'
     - 'projects/${_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
     - '--keyversion'
