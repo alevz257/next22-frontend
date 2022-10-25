@@ -2,7 +2,7 @@ steps:
 # Build the container image
 - id: 'build-image'
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '.', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}', '-f', 'Dockerfile']
+  args: ['build', '.', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '-f', 'Dockerfile']
 - id: 'cloud-deploy'
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
@@ -13,8 +13,8 @@ steps:
           '--delivery-pipeline', 'demo-clouddeploy',
           '--labels', 'commit=${COMMIT_SHA}',
           '--annotations', 'build=https://console.cloud.google.com/cloud-build/builds;region=${LOCATION}/${BUILD_ID};tab=artifact?project=${PROJECT_ID},repo=${REPO_NAME},revision-id=${REVISION_ID}', 
-          '--images=my-app-image=asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
+          '--images=my-app-image=asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}']
 images: 
-- asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}
+- asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}
 options:
   requestedVerifyOption: VERIFIED
