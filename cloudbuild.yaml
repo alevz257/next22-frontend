@@ -1,9 +1,11 @@
 steps:
 # Build the container image
-- name: 'gcr.io/cloud-builders/docker'
+- id: 'build-image'
+  name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}', '.']
 # Push the container image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
+- id: 'push image'
+  name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
 - id: 'create-attestation'
   name: 'asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}'
@@ -13,8 +15,18 @@ steps:
     - '--attestor'
     - 'projects/${_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
     - '--keyversion'
-    - 'projects/${_PROJECT_ID}/locations/global/keyRings/${_KMS_KEYRING_NAME}/cryptoKeys/${_KMS_KEY_NAME}/cryptoKeyVersions/1'  
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    - 'projects/${_PROJECT_ID}/locations/global/keyRings/${_KMS_KEYRING_NAME}/cryptoKeys/${_KMS_KEY_NAME}/cryptoKeyVersions/1'
+  env:
+  - 'PORT=8080'
+  - 'PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550'
+  - 'CURRENCY_SERVICE_ADDR=currencyservice:7000'
+  - 'CART_SERVICE_ADDR=cartservice:7070'
+  - 'RECOMMENDATION_SERVICE_ADDR=recommendationservice:8080'
+  - 'SHIPPING_SERVICE_ADDR=shippingservice:50051'
+  - 'CHECKOUT_SERVICE_ADDR=checkoutservice:5050'
+  - 'AD_SERVICE_ADDR=adservice:9555'    
+- id: 'cloud-deploy'
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: ['deploy', 'releases', 'create', 'test-release-${SHORT_SHA}', '--skaffold-file', './deploy/skaffold.yaml','--project', 'next22-demo-1', '--region', 'asia-southeast2', '--delivery-pipeline', 'demo-clouddeploy', '--images=my-app-image=asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
 images: ['asia-southeast2-docker.pkg.dev/${_PROJECT_ID}/containers/${_IMAGE}:${COMMIT_SHA}']
