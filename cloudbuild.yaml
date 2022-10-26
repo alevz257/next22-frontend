@@ -1,20 +1,19 @@
 steps:
 # Build the container image
-#- id: 'build-image'
+- id: 'build-image'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '.']
-#- id: 'cloud-deploy'
-#- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-#  entrypoint: gcloud
-#  args: [ 'deploy', 'releases', 'create', 'test-release-${SHORT_SHA}', 
-#          '--skaffold-file', './deploy/skaffold.yaml',
-#          #'--project', 'next22-demo-1', 
-#          '--region', 'asia-southeast2', 
-#          '--delivery-pipeline', 'demo-clouddeploy',
-#          '--labels', 'commit=${COMMIT_SHA}',
-#          '--annotations', 'build=https://console.cloud.google.com/cloud-build/builds;region=${LOCATION}/${BUILD_ID};tab=artifact?project=${PROJECT_ID},repo=${REPO_NAME},revision-id=${REVISION_ID}', 
-#          '--images=my-app-image=asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}']
+- id: 'cloud-deploy'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: [ 'deploy', 'releases', 'create', 'test-release-${SHORT_SHA}', 
+          '--skaffold-file', './deploy/skaffold.yaml', 
+          '--region', 'asia-southeast2', 
+          '--delivery-pipeline', 'demo-clouddeploy',
+          '--labels', 'commit=${COMMIT_SHA}',
+          '--annotations', 'build=https://console.cloud.google.com/cloud-build/builds;region=${LOCATION}/${BUILD_ID};tab=artifact?project=${PROJECT_ID},repo=${REPO_NAME},revision-id=${REVISION_ID}', 
+          '--images=my-app-image=asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}']
 images: 
 - asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}
-#options:
-#  requestedVerifyOption: VERIFIED
+options:
+  requestedVerifyOption: VERIFIED
