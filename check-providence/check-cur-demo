@@ -2,9 +2,9 @@
   "_type": "https://in-toto.io/Statement/v0.1",
   "subject": [
     {
-      "name": "https://asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+      "name": "https://asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:c10ee8b8d7771968259871748fa42bd57f08bffb",
       "digest": {
-        "sha256": "dad2ae015ec58a6ef0ffbb9c202e1a8544adf2980d9f17d0e39d2f15b84d18a4"
+        "sha256": "d314e7c28b36fad2d39f6ff18adf5e2ffdd0407dd67a3c5d599ae92aee09700c"
       }
     }
   ],
@@ -18,25 +18,25 @@
       "entryPoint": "cloudbuild.yaml",
       "arguments": {
         "@type": "type.googleapis.com/google.devtools.cloudbuild.v1.Build",
-        "id": "fb56e922-5a2d-43cb-826d-fb66e0844ebd",
+        "id": "d8a7b677-94e7-4a67-8ea5-e4a92e0f6f2b",
         "steps": [
           {
             "name": "gcr.io/cloud-builders/docker",
             "args": [
               "build",
               "-t",
-              "asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
+              "asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:c10ee8b8d7771968259871748fa42bd57f08bffb",
               "."
             ],
             "id": "build-image",
             "timing": {
-              "startTime": "2022-10-25T14:31:17.081755474Z",
-              "endTime": "2022-10-25T14:32:58.518900277Z"
+              "startTime": "2022-10-25T15:53:35.635463204Z",
+              "endTime": "2022-10-25T15:54:53.111269919Z"
             },
             "status": "SUCCESS",
             "pullTiming": {
-              "startTime": "2022-10-25T14:31:17.081755474Z",
-              "endTime": "2022-10-25T14:31:17.084539393Z"
+              "startTime": "2022-10-25T15:53:35.635463204Z",
+              "endTime": "2022-10-25T15:53:35.638851406Z"
             }
           },
           {
@@ -45,7 +45,7 @@
               "deploy",
               "releases",
               "create",
-              "test-release-5a909b1",
+              "test-release-c10ee8b",
               "--skaffold-file",
               "./deploy/skaffold.yaml",
               "--project",
@@ -54,18 +54,22 @@
               "asia-southeast2",
               "--delivery-pipeline",
               "demo-clouddeploy",
-              "--images=my-app-image=asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+              "--labels",
+              "commit=c10ee8b8d7771968259871748fa42bd57f08bffb",
+              "--annotations",
+              "build=https://console.cloud.google.com/cloud-build/builds;region=asia-southeast2/d8a7b677-94e7-4a67-8ea5-e4a92e0f6f2b;tab=artifact?project=next22-demo-1,repo=alevz-next22-frontend-demo,revision-id=c10ee8b8d7771968259871748fa42bd57f08bffb",
+              "--images=my-app-image=asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:c10ee8b8d7771968259871748fa42bd57f08bffb"
             ],
             "id": "cloud-deploy",
             "entrypoint": "gcloud",
             "timing": {
-              "startTime": "2022-10-25T14:32:58.519010939Z",
-              "endTime": "2022-10-25T14:34:20.947512839Z"
+              "startTime": "2022-10-25T15:54:53.111363325Z",
+              "endTime": "2022-10-25T15:56:14.553647364Z"
             },
             "status": "SUCCESS",
             "pullTiming": {
-              "startTime": "2022-10-25T14:32:58.519010939Z",
-              "endTime": "2022-10-25T14:34:05.288294460Z"
+              "startTime": "2022-10-25T15:54:53.111363325Z",
+              "endTime": "2022-10-25T15:55:58.843022266Z"
             }
           }
         ],
@@ -73,7 +77,7 @@
           "resolvedRepoSource": {
             "projectId": "next22-demo-1",
             "repoName": "alevz-next22-frontend-demo",
-            "commitSha": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+            "commitSha": "c10ee8b8d7771968259871748fa42bd57f08bffb"
           }
         },
         "options": {
@@ -81,38 +85,31 @@
           "substitutionOption": "ALLOW_LOOSE",
           "logging": "LEGACY",
           "dynamicSubstitutions": true,
-          "pool": {
-            "name": "projects/next22-demo-1/locations/asia-southeast2/workerPools/privatepool-demo-id"
-          }
+          "pool": {}
         },
         "substitutions": {
-          "_KMS_KEYRING_NAME": "key-attestor-ring",
-          "_IMAGE": "frontend-demo",
-          "_ATTESTOR_NAME": "attestor-next-demo",
-          "_KMS_KEY_NAME": "key-attestor-key",
-          "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
-          "REVISION_ID": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
-          "_PROJECT_ID": "next22-demo-1",
+          "REVISION_ID": "c10ee8b8d7771968259871748fa42bd57f08bffb",
+          "COMMIT_SHA": "c10ee8b8d7771968259871748fa42bd57f08bffb",
+          "SHORT_SHA": "c10ee8b",
           "BRANCH_NAME": "main",
-          "TRIGGER_NAME": "trigger-frontend",
-          "COMMIT_SHA": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f",
           "REF_NAME": "main",
-          "SHORT_SHA": "5a909b1",
+          "TRIGGER_NAME": "trigger-frontend",
+          "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
           "REPO_NAME": "alevz-next22-frontend-demo"
         },
-        "name": "projects/320741459061/locations/asia-southeast2/builds/fb56e922-5a2d-43cb-826d-fb66e0844ebd"
+        "name": "projects/320741459061/locations/asia-southeast2/builds/d8a7b677-94e7-4a67-8ea5-e4a92e0f6f2b"
       }
     },
     "metadata": {
-      "buildInvocationId": "fb56e922-5a2d-43cb-826d-fb66e0844ebd",
-      "buildStartedOn": "2022-10-25T14:31:09.286440161Z",
-      "buildFinishedOn": "2022-10-25T14:34:25.750426Z"
+      "buildInvocationId": "d8a7b677-94e7-4a67-8ea5-e4a92e0f6f2b",
+      "buildStartedOn": "2022-10-25T15:53:27.652170106Z",
+      "buildFinishedOn": "2022-10-25T15:56:19.181389Z"
     },
     "materials": [
       {
         "uri": "https://source.cloud.google.com/next22-demo-1/alevz-next22-frontend-demo",
         "digest": {
-          "sha1": "5a909b1b3d4ec8ca78378c3c5250da3ba1a8759f"
+          "sha1": "c10ee8b8d7771968259871748fa42bd57f08bffb"
         }
       }
     ]
