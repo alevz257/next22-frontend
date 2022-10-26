@@ -1,10 +1,10 @@
 steps:
 # Build the container image
 - id: 'build-image'
-- name: 'gcr.io/cloud-builders/docker'
+  name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '.']
 - id: 'cloud-deploy'
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: [ 'deploy', 'releases', 'create', 'test-release-${SHORT_SHA}', 
           '--skaffold-file', './deploy/skaffold.yaml', 
