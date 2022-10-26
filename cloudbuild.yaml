@@ -16,5 +16,5 @@ steps:
 #          '--images=my-app-image=asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}']
 images: 
 - asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}
-options:
-  requestedVerifyOption: VERIFIED
+#options:
+#  requestedVerifyOption: VERIFIED
