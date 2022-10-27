@@ -26,5 +26,5 @@ metadata:
  name: prodtarget
 description: production namespace
 gke:
- cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/autopilot-cluster-1
+ cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/cluster-demo-prod
 requireApproval: true
