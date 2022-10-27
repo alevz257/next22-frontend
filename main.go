@@ -45,8 +45,7 @@ var (
 		"CAD": true,
 		"JPY": true,
 		"GBP": true,
-		"TRY": true,
-		"IDR": true}
+		"TRY": true}
 )
 
 type ctxKeySessionID struct{}

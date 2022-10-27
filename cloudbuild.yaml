@@ -17,3 +17,5 @@ images:
 - asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}
 options:
   requestedVerifyOption: VERIFIED
+  pool:
+    name: 'projects/next22-demo-1/locations/asia-southeast2/workerPools/privatepool-demo-id' 
