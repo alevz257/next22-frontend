@@ -30,7 +30,13 @@ COPY . .
 ARG SKAFFOLD_GO_GCFLAGS
 RUN go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/frontend .
 
-FROM alpine as release
+FROM asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo: as release
+#RUN echo -e "http://download.nus.edu.sg/mirror/alpine/v3.16/main\nhttp://download.nus.edu.sg/mirror/alpine/v3.16/community" > /etc/apk/repositories
+#RUN echo -e "http://nl.alpinelinux.org/alpine/v3.16/main\nhttp://nl.alpinelinux.org/alpine/v3.16/community" > /etc/apk/repositories
+#RUN echo -e "http://nl.alpinelinux.org/alpine/v3.16/main" > /etc/apk/repositories
+#RUN apk update
+#RUN apk add --no-cache ca-certificates \
+#    busybox-extras net-tools bind-tools
 WORKDIR /src
 COPY --from=builder /go/bin/frontend /src/server
 COPY ./templates ./templates
@@ -39,7 +45,7 @@ COPY ./static ./static
 # Definition of this variable is used by 'skaffold debug' to identify a golang binary.
 # Default behavior - a failure prints a stack trace for the current goroutine.
 # See https://golang.org/pkg/runtime/
-ENV GOTRACEBACK=single
+#ENV GOTRACEBACK=single
 
 EXPOSE 8080
 ENTRYPOINT ["/src/server"]
