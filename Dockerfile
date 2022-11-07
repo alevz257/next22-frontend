@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM asia-southeast2-docker.pkg.dev/next22-demo-1/containers/builder as builder
-#RUN echo -e "http://download.nus.edu.sg/mirror/alpine/v3.16/main\nhttp://download.nus.edu.sg/mirror/alpine/v3.16/community" > /etc/apk/repositories
+FROM golang:1.18.4-alpine as builder
+RUN echo -e "http://download.nus.edu.sg/mirror/alpine/v3.16/main\nhttp://download.nus.edu.sg/mirror/alpine/v3.16/community" > /etc/apk/repositories
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.16/main\nhttp://nl.alpinelinux.org/alpine/v3.16/community" > /etc/apk/repositories
 #RUN wget http://dl-cdn.alpinelinux.org/alpine/v3.16/main/x86_64/APKINDEX.tar.gz
 #RUN apk update
-#RUN apk add --no-cache ca-certificates git
-#RUN apk add build-base
+RUN apk add --no-cache ca-certificates git
+RUN apk add build-base
 WORKDIR /src
 
 # restore dependencies
