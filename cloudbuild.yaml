@@ -1,12 +1,8 @@
 steps:
 # Build the container image
-- id: 'pull for cache'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker pull asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:latest || exit 0']
 - id: 'build-image'
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '--cache-from', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:latest','.']
+  args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '.']
 - id: 'cloud-deploy'
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
