@@ -30,7 +30,7 @@ COPY . .
 ARG SKAFFOLD_GO_GCFLAGS
 RUN go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/frontend .
 
-FROM asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo: as release
+FROM asia-southeast2-docker.pkg.dev/next22-demo-1/containers/frontend-demo:latest as release
 #RUN echo -e "http://download.nus.edu.sg/mirror/alpine/v3.16/main\nhttp://download.nus.edu.sg/mirror/alpine/v3.16/community" > /etc/apk/repositories
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.16/main\nhttp://nl.alpinelinux.org/alpine/v3.16/community" > /etc/apk/repositories
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.16/main" > /etc/apk/repositories
