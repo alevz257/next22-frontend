@@ -18,7 +18,7 @@ metadata:
  name: devtarget
 description: development namespace
 gke:
- cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/cluster-demo
+ cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/autopilot-cluster-1
 ---
 apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
@@ -26,5 +26,5 @@ metadata:
  name: prodtarget
 description: production namespace
 gke:
- cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/cluster-demo-prod
+ cluster: projects/next22-demo-1/locations/asia-southeast2/clusters/autopilot-cluster-1
 requireApproval: true
