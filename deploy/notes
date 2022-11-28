@@ -1,0 +1,1 @@
+gcloud deploy apply --file clouddeploy.yaml --region=asia-southeast2 --project=next22-demo-1

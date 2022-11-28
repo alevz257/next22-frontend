@@ -1,5 +1,24 @@
 steps:
-# Build the container image
+#ossScan
+- id: 'scan vulnr'
+  name: snyk/snyk:golang-1.15
+  entrypoint: bash
+  args:
+    - '-c'
+    - |-
+      snyk config set api=${_SNYK_TOKEN}
+      snyk test --severity-threshold=medium
+#codeScanning
+- id: 'scan code'
+  name: snyk/snyk:golang-1.15
+  entrypoint: bash
+  args:
+    - '-c'
+    - |-
+      snyk config set api=${_SNYK_TOKEN}
+      snyk code test --severity-threshold=medium
+      snyk monitor
+#Build the container image
 - id: 'build-image'
   name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/${PROJECT_ID}/containers/frontend-demo:${COMMIT_SHA}', '.']
